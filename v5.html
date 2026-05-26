@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iyke Nova Global Ventures — Nigeria's Premier Snack Manufacturer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --g:#228D22; --gd:#0D4A0D; --gl:#E6F4E6;
+  --o:#F56733; --od:#C44E20; --op:#FEF0EB;
+  --ink:#111614; --body:#334433; --mute:#7A927A;
+  --sand:#F8F5EE; --wht:#FFFFFF; --bdr:#D8EAD8;
+  --nav-h:72px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--wht);color:var(--ink);overflow-x:hidden;}
+
+/* ═══════════════════════════════ NAV ═══════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:var(--nav-h);padding:0 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,box-shadow .4s;
+}
+#nav.solid{background:rgba(255,255,255,.97);box-shadow:0 2px 24px rgba(17,22,20,.09);}
+
+.nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;}
+.nav-logo img{height:44px;width:auto;}
+.nav-logo-txt{display:flex;flex-direction:column;line-height:1.2;}
+.nav-logo-name{font-family:'DM Serif Display',serif;font-size:1.1rem;color:#fff;transition:color .3s;}
+.nav-logo-sub{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);transition:color .3s;}
+#nav.solid .nav-logo-name{color:var(--gd);}
+#nav.solid .nav-logo-sub{color:var(--mute);}
+
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:#fff;}
+#nav.solid .nav-links a{color:var(--body);}
+#nav.solid .nav-links a:hover{color:var(--g);}
+.nav-cta{background:var(--o)!important;color:#fff!important;padding:.52rem 1.3rem;border-radius:3px;transition:background .2s!important;}
+.nav-cta:hover{background:var(--od)!important;}
+#nav.solid .nav-cta{background:var(--g)!important;}
+#nav.solid .nav-cta:hover{background:var(--gd)!important;}
+
+/* hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+#nav.solid .hamburger span{background:var(--ink);}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* mobile drawer */
+.mobile-menu{
+  position:fixed;top:var(--nav-h);left:0;right:0;z-index:490;
+  background:#fff;border-bottom:3px solid var(--g);
+  padding:1.5rem 5vw 2rem;
+  transform:translateY(-110%);transition:transform .35s ease;
+  display:none;
+}
+.mobile-menu.open{transform:translateY(0);}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:0;}
+.mobile-menu ul a{
+  display:block;padding:.9rem 0;
+  font-size:.9rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--body);text-decoration:none;border-bottom:1px solid var(--bdr);
+  transition:color .2s;
+}
+.mobile-menu ul a:hover{color:var(--g);}
+.mobile-menu .m-cta{margin-top:1.2rem;display:block;background:var(--g);color:#fff;text-align:center;padding:.9rem;border-radius:3px;font-size:.88rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;}
+
+/* ═══════════════════════════════ HERO SLIDER ═══════════════════════════════ */
+#hero{position:relative;height:100vh;min-height:560px;overflow:hidden;}
+
+.slide{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+  opacity:0;transition:opacity 1s ease;pointer-events:none;
+  background-size:cover;background-position:center;
+}
+.slide.active{opacity:1;pointer-events:all;}
+
+/* individual slide images */
+.s1{background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80');}
+.s2{background-image:url('https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1920&q=80');}
+.s3{background-image:url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1920&q=80');}
+.s4{background-image:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80');}
+.s5{background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80');}
+
+/* per-slide colour tints so text always readable */
+.s1::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(13,74,13,.82) 0%,rgba(13,74,13,.45) 55%,rgba(0,0,0,.15) 100%);}
+.s2::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,10,10,.85) 0%,rgba(10,10,10,.5) 55%,rgba(245,103,51,.15) 100%);}
+.s3::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(13,74,13,.78) 0%,rgba(13,74,13,.4) 55%,rgba(0,0,0,.1) 100%);}
+.s4::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(5,15,5,.88) 0%,rgba(5,15,5,.55) 55%,rgba(0,0,0,.2) 100%);}
+.s5::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(197,78,32,.88) 0%,rgba(197,78,32,.5) 55%,rgba(0,0,0,.15) 100%);}
+
+/* slide content */
+.s-inner{
+  position:relative;z-index:2;
+  padding:0 7vw 100px;
+  max-width:760px;
+}
+
+.s-kicker{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.65);margin-bottom:1.4rem;
+  opacity:0;transform:translateX(-18px);
+  transition:opacity .55s .15s,transform .55s .15s;
+}
+.slide.active .s-kicker{opacity:1;transform:none;}
+.kicker-dash{width:32px;height:2px;background:var(--o);flex-shrink:0;}
+
+.s-h{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.2rem,7.5vw,7.5rem);
+  line-height:.93;letter-spacing:.015em;
+  color:#fff;margin-bottom:1.2rem;
+  opacity:0;transform:translateY(28px);
+  transition:opacity .65s .3s,transform .65s .3s;
+}
+.slide.active .s-h{opacity:1;transform:none;}
+.s-h em{font-style:italic;color:var(--o);}
+
+.s-sub{
+  font-size:clamp(.9rem,1.8vw,1.05rem);font-weight:300;line-height:1.75;
+  color:rgba(255,255,255,.75);max-width:480px;margin-bottom:2rem;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .6s .52s,transform .6s .52s;
+}
+.slide.active .s-sub{opacity:1;transform:none;}
+
+.s-btns{
+  display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .55s .7s,transform .55s .7s;
+}
+.slide.active .s-btns{opacity:1;transform:none;}
+
+/* buttons */
+.btn{display:inline-block;padding:.82rem 1.8rem;border-radius:3px;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:transform .15s,background .2s,opacity .2s,border-color .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-wht{background:#fff;color:var(--gd);}
+.btn-wht:hover{opacity:.88;}
+.btn-g{background:var(--g);color:#fff;}
+.btn-g:hover{background:var(--gd);}
+.btn-o{background:var(--o);color:#fff;}
+.btn-o:hover{background:var(--od);}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.4);color:rgba(255,255,255,.9);}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+.btn-ghost-dk{border:1.5px solid var(--bdr);color:var(--gd);}
+.btn-ghost-dk:hover{border-color:var(--g);background:var(--gl);}
+
+/* slider chrome */
+.s-arrows{
+  position:absolute;right:5vw;bottom:90px;z-index:10;
+  display:flex;gap:.5rem;
+}
+.s-arr{
+  width:46px;height:46px;border-radius:50%;cursor:pointer;user-select:none;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:1.1rem;transition:background .2s;
+}
+.s-arr:hover{background:rgba(255,255,255,.28);}
+
+.s-counter{
+  position:absolute;right:5vw;bottom:148px;z-index:10;
+  font-family:'Bebas Neue',sans-serif;font-size:.9rem;
+  color:rgba(255,255,255,.45);letter-spacing:.1em;
+}
+.s-counter span{color:#fff;font-size:1.1rem;}
+
+/* tab bar */
+.s-tabs{
+  position:absolute;bottom:0;left:0;right:0;z-index:10;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  background:rgba(0,0,0,.42);backdrop-filter:blur(8px);
+  height:56px;
+}
+.s-tab{
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;border-right:1px solid rgba(255,255,255,.07);
+  position:relative;overflow:hidden;transition:background .2s;
+}
+.s-tab:last-child{border-right:none;}
+.s-tab:hover{background:rgba(255,255,255,.06);}
+.s-tab.on{background:rgba(34,141,34,.2);}
+.s-tab-lbl{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);transition:color .2s;position:relative;z-index:1;padding:0 .5rem;text-align:center;}
+.s-tab.on .s-tab-lbl{color:#fff;}
+.s-prog{position:absolute;bottom:0;left:0;height:3px;background:var(--g);width:0;transition:width 0s linear;}
+.s-tab.on .s-prog{width:100%;transition:width 5s linear;}
+
+/* ═══════════════════════════════ TICKER ═══════════════════════════════ */
+#ticker{background:var(--g);padding:.9rem 0;overflow:hidden;border-top:3px solid var(--o);}
+.ticker-inner{display:flex;white-space:nowrap;animation:tick 30s linear infinite;}
+.ticker-inner:hover{animation-play-state:paused;}
+.t-item{display:inline-flex;align-items:center;gap:.8rem;padding:0 2.5rem;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.9);}
+.t-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.4);flex-shrink:0;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════ SHARED ═══════════════════════════════ */
+section{padding:5rem 5vw;}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;}
+.eyebrow::before{content:'';flex-shrink:0;width:26px;height:2px;}
+.ey-o{color:var(--o);}.ey-o::before{background:var(--o);}
+.ey-g{color:var(--g);}.ey-g::before{background:var(--g);}
+.ey-w{color:rgba(255,255,255,.55);}.ey-w::before{background:rgba(255,255,255,.4);}
+
+.sec-h{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.15;color:var(--gd);}
+.sec-h em{font-style:italic;color:var(--o);}
+.sec-h-wht{color:#fff;}
+
+/* ═══════════════════════════════ ABOUT ═══════════════════════════════ */
+#about{background:var(--wht);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3.5rem;}
+.ab-body{font-size:.95rem;line-height:1.9;color:var(--body);margin-bottom:1.2rem;}
+.pullquote{margin:2rem 0;padding:1.6rem 1.8rem;border-left:4px solid var(--g);background:var(--gl);border-radius:0 8px 8px 0;}
+.pq-t{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.2rem;line-height:1.5;color:var(--gd);}
+.pq-a{margin-top:.5rem;font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;}
+.ab-feats{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.8rem 0;}
+.ab-feat{display:flex;gap:.9rem;align-items:flex-start;padding:1.1rem 1.2rem;background:var(--sand);border-radius:6px;border-left:3px solid var(--g);transition:border-color .2s,background .2s;}
+.ab-feat:hover{border-color:var(--o);background:var(--op);}
+.af-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.af-title{font-size:.82rem;font-weight:700;color:var(--gd);margin-bottom:.2rem;}
+.af-body{font-size:.78rem;line-height:1.6;color:var(--mute);}
+.about-card{background:var(--gd);border-radius:14px;padding:2.5rem 2.2rem;position:sticky;top:calc(var(--nav-h) + 1.5rem);overflow:hidden;}
+.about-card::after{content:'ING';position:absolute;bottom:-1rem;right:-.5rem;font-family:'Bebas Neue',sans-serif;font-size:8rem;color:rgba(34,141,34,.1);line-height:1;pointer-events:none;}
+.about-card img{height:48px;width:auto;margin-bottom:1.3rem;}
+.ac-name{font-family:'DM Serif Display',serif;font-size:1.35rem;color:#fff;margin-bottom:.6rem;}
+.ac-body{font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.55);margin-bottom:1.8rem;}
+.ac-stats{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;position:relative;z-index:1;}
+.ac-s{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:1.1rem;}
+.ac-n{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--o);line-height:1;}
+.ac-l{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.2rem;}
+.ac-chips{margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.45rem;position:relative;z-index:1;}
+.ac-chip{background:rgba(34,141,34,.18);border:1px solid rgba(34,141,34,.3);border-radius:100px;padding:.28rem .8rem;font-size:.65rem;font-weight:700;letter-spacing:.06em;color:#90EE90;}
+
+/* ═══════════════════════════════ PRODUCTS ═══════════════════════════════ */
+#products{background:var(--sand);padding:5rem 0;}
+.prod-head{padding:0 5vw;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:3rem;}
+.prod-h2{margin-top:.6rem;}
+
+.prod-track-wrap{overflow-x:auto;padding:0 5vw 1rem;scrollbar-width:thin;scrollbar-color:var(--bdr) transparent;}
+.prod-track-wrap::-webkit-scrollbar{height:4px;}
+.prod-track-wrap::-webkit-scrollbar-track{background:transparent;}
+.prod-track-wrap::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:2px;}
+.prod-row{display:flex;gap:1.1rem;width:max-content;}
+
+.pc{width:280px;background:var(--wht);border-radius:12px;border:1px solid var(--bdr);overflow:hidden;flex-shrink:0;transition:transform .25s,box-shadow .25s;cursor:pointer;}
+.pc:hover{transform:translateY(-5px);box-shadow:0 18px 48px rgba(13,74,13,.13);}
+.pc:hover .pc-bar{width:100%;}
+.pc-img{height:175px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden;background-size:cover;background-position:center;}
+.pi1{background-image:url('https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=75');}
+.pi2{background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=75');}
+.pi3{background-image:url('https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?auto=format&fit=crop&w=600&q=75');}
+.pi4{background-image:url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=75');}
+.pi5{background-image:url('https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=600&q=75');}
+.pi6{background-image:url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=600&q=75');}
+.pc-img::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.28);}
+.pc-emoji{position:relative;z-index:1;filter:drop-shadow(0 3px 10px rgba(0,0,0,.4));font-size:3rem;}
+.pc-tag{position:absolute;top:.8rem;right:.8rem;z-index:2;background:var(--o);color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .55rem;border-radius:2px;}
+.pc-cnt{position:absolute;bottom:.8rem;left:.8rem;z-index:2;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);color:#fff;border:1px solid rgba(255,255,255,.15);font-size:.6rem;font-weight:700;letter-spacing:.06em;padding:.22rem .55rem;border-radius:100px;}
+.pc-body{padding:1.3rem 1.5rem 1.6rem;}
+.pc-bar{height:3px;background:var(--g);width:36px;border-radius:2px;transition:width .4s ease;margin-bottom:.9rem;}
+.pc-name{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--gd);}
+.pc-desc{font-size:.76rem;line-height:1.6;color:var(--mute);margin:.3rem 0 .9rem;}
+.pc-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);text-decoration:none;border-bottom:1px solid var(--g);padding-bottom:1px;transition:color .2s,border-color .2s;}
+.pc-link:hover{color:var(--o);border-color:var(--o);}
+.pc-link::after{content:'→';transition:transform .2s;}
+.pc-link:hover::after{transform:translateX(3px);}
+
+.prod-ctrl{padding:.8rem 5vw 0;display:flex;align-items:center;gap:.7rem;}
+.pctrl-btn{width:40px;height:40px;border-radius:50%;background:transparent;border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--gd);transition:background .2s,border-color .2s;}
+.pctrl-btn:hover{background:var(--gl);border-color:var(--g);}
+
+/* ═══════════════════════════════ QUALITY ═══════════════════════════════ */
+#quality{background:var(--wht);}
+.q-intro{text-align:center;margin-bottom:4rem;}
+.q-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr);}
+.q-tile{background:var(--wht);padding:2.2rem 1.8rem;position:relative;overflow:hidden;transition:background .2s;}
+.q-tile:hover{background:var(--gl);}
+.q-tile::before{content:attr(data-n);position:absolute;top:-.5rem;right:.8rem;font-family:'Bebas Neue',sans-serif;font-size:5.5rem;color:rgba(13,74,13,.05);line-height:1;pointer-events:none;}
+.q-tile:hover::before{color:rgba(13,74,13,.1);}
+.q-icon{font-size:1.9rem;margin-bottom:1rem;display:block;}
+.q-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--gd);margin-bottom:.5rem;}
+.q-text{font-size:.8rem;line-height:1.75;color:var(--mute);}
+.q-bar{margin-top:3.5rem;background:var(--gd);border-radius:12px;padding:2.2rem 2.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.qb-label{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:#fff;letter-spacing:.04em;}
+.qb-chips{display:flex;gap:.8rem;flex-wrap:wrap;}
+.qb-chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:4px;padding:.45rem 1rem;font-size:.74rem;font-weight:700;letter-spacing:.07em;color:rgba(255,255,255,.7);}
+.qb-chip.hi{background:var(--o);border-color:var(--o);color:#fff;}
+
+/* ═══════════════════════════════ DISTRIBUTOR ═══════════════════════════════ */
+#dist{padding:0;display:grid;grid-template-columns:1fr 1fr;}
+.dist-panel{padding:6rem 5vw;position:relative;overflow:hidden;}
+.dist-panel.dp-g{background:var(--g);}
+.dist-panel.dp-d{background:var(--gd);}
+.dist-panel::after{content:'';position:absolute;width:280px;height:280px;border-radius:50%;top:-60px;right:-60px;pointer-events:none;}
+.dist-panel.dp-g::after{background:rgba(255,255,255,.07);}
+.dist-panel.dp-d::after{background:rgba(245,103,51,.1);}
+.dist-sub{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.9rem;}
+.dist-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,3.8rem);letter-spacing:.02em;color:#fff;line-height:1;margin-bottom:1.1rem;}
+.dist-body{font-size:.9rem;line-height:1.85;color:rgba(255,255,255,.7);margin-bottom:2.2rem;}
+
+/* ═══════════════════════════════ FAQ ═══════════════════════════════ */
+#faq{background:var(--sand);}
+.faq-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:6rem;align-items:start;margin-top:3rem;}
+.faq-sidebar{position:sticky;top:calc(var(--nav-h) + 1.5rem);}
+.faq-desc{font-size:.93rem;line-height:1.85;color:var(--body);margin:1.2rem 0 2rem;}
+.faq-box{background:var(--gd);border-radius:10px;padding:1.8rem;}
+.fb-title{font-family:'DM Serif Display',serif;font-size:1rem;color:#fff;margin-bottom:.45rem;}
+.fb-body{font-size:.8rem;line-height:1.65;color:rgba(255,255,255,.5);margin-bottom:1.1rem;}
+.fb-lnk{font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--o);text-decoration:none;transition:opacity .2s;}
+.fb-lnk:hover{opacity:.75;}
+.faq-items{display:flex;flex-direction:column;}
+.fi{border-bottom:1px solid var(--bdr);}
+.fi:first-child{border-top:1px solid var(--bdr);}
+.fi-btn{width:100%;background:none;border:none;cursor:pointer;padding:1.4rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;text-align:left;}
+.fi-num{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--mute);flex-shrink:0;width:2rem;text-align:center;transition:color .2s;}
+.fi.open .fi-num{color:var(--g);}
+.fi-q{font-size:.92rem;font-weight:700;color:var(--gd);flex:1;line-height:1.45;transition:color .2s;}
+.fi.open .fi-q{color:var(--g);}
+.fi-icon{width:32px;height:32px;border-radius:50%;background:var(--wht);border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--gd);flex-shrink:0;transition:background .25s,border-color .25s,transform .3s,color .2s;}
+.fi.open .fi-icon{background:var(--o);border-color:var(--o);color:#fff;transform:rotate(45deg);}
+.fi-ans{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;}
+.fi.open .fi-ans{max-height:300px;padding-bottom:1.4rem;}
+.fi-ans p{font-size:.86rem;line-height:1.85;color:var(--body);padding-right:3rem;}
+.fi-ans strong{color:var(--gd);font-weight:700;}
+
+/* ═══════════════════════════════ CONTACT ═══════════════════════════════ */
+#contact{background:var(--gd);}
+.contact-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:3.5rem;align-items:start;}
+.cb-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;margin-bottom:1rem;}
+.cb-logo img{height:46px;width:auto;}
+.cb-name{font-family:'DM Serif Display',serif;font-size:1.3rem;color:#fff;}
+.cb-name em{font-style:italic;color:var(--o);}
+.cb-tag{font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.4);}
+.cc-title{font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1.2rem;}
+.cc-links{display:flex;flex-direction:column;gap:.55rem;}
+.cc-link{font-size:.82rem;color:rgba(255,255,255,.58);text-decoration:none;transition:color .2s;}
+.cc-link:hover{color:var(--o);}
+.cc-lbl{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.2rem;margin-top:1rem;}
+.cc-val{font-size:.86rem;color:rgba(255,255,255,.65);}
+.cc-cta{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;line-height:1.3;margin-bottom:1.5rem;}
+.cc-cta em{font-style:italic;color:var(--o);}
+
+/* ═══════════════════════════════ FOOTER ═══════════════════════════════ */
+footer{background:#050E05;border-top:1px solid rgba(34,141,34,.12);padding:1.8rem 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.fc{font-size:.74rem;color:rgba(255,255,255,.2);}
+.fn{display:flex;gap:1.8rem;list-style:none;}
+.fn a{font-size:.74rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s;}
+.fn a:hover{color:rgba(255,255,255,.65);}
+
+/* ═══════════════════════════════ REVEAL ═══════════════════════════════ */
+.r{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.r.vis{opacity:1;transform:none;}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* ═══════════════════════════════ RESPONSIVE ═══════════════════════════════ */
+
+/* 1100px - large tablet */
+@media(max-width:1100px){
+  .about-grid{gap:3rem;}
+  .contact-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}
+}
+
+/* 960px - tablet */
+@media(max-width:960px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .mobile-menu{display:block;}
+  .about-grid,.faq-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .about-card{position:static;}
+  .faq-sidebar{position:static;}
+  .q-grid{grid-template-columns:1fr 1fr;}
+  #dist{grid-template-columns:1fr;}
+  .s-inner{padding:0 5vw 72px;}
+  .s-counter,.s-arrows{display:none;}
+}
+
+/* 700px - large mobile */
+@media(max-width:700px){
+  :root{--nav-h:64px;}
+  section{padding:4rem 5vw;}
+  .s-tabs{height:auto;flex-direction:column;position:relative;}
+  .s-tabs{display:none;} /* hide tabs on small screens — swipe instead */
+  #hero{min-height:100svh;}
+  .s-h{font-size:clamp(2.8rem,11vw,4.5rem);}
+  .s-inner{padding:0 5vw 60px;}
+  .about-grid,.faq-grid,.contact-grid{grid-template-columns:1fr;gap:2rem;}
+  .ab-feats{grid-template-columns:1fr;}
+  .q-grid{grid-template-columns:1fr;}
+  .q-bar{flex-direction:column;align-items:flex-start;}
+  #dist{grid-template-columns:1fr;}
+  .dist-panel{padding:4rem 5vw;}
+  .prod-head{flex-direction:column;align-items:flex-start;gap:.8rem;}
+  .contact-grid{grid-template-columns:1fr;}
+  .ab-feats{grid-template-columns:1fr;}
+  /* show touch indicator on hero */
+  #hero::after{content:'Swipe ←→';position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);z-index:10;}
+}
+
+/* 480px - small mobile */
+@media(max-width:480px){
+  .s-h{font-size:clamp(2.4rem,12vw,3.5rem);}
+  .s-sub{font-size:.88rem;}
+  .s-btns{gap:.6rem;}
+  .btn{padding:.72rem 1.3rem;font-size:.78rem;}
+  .sec-h{font-size:1.7rem;}
+  .pullquote .pq-t{font-size:1.05rem;}
+  footer{flex-direction:column;gap:.8rem;text-align:center;}
+  .fn{flex-wrap:wrap;justify-content:center;gap:1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="https://iykenova.com/wp-content/uploads/2017/08/iyke-nova-logo.png" alt="Iyke Nova Logo">
+    <div class="nav-logo-txt">
+      <span class="nav-logo-name"></span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#quality">Quality</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#dist">Wholesale</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="hamburger" id="ham" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- mobile nav drawer -->
+<div class="mobile-menu" id="mob-menu" role="navigation">
+  <ul>
+    <li><a href="#about" class="mob-lnk">About</a></li>
+    <li><a href="#products" class="mob-lnk">Products</a></li>
+    <li><a href="#quality" class="mob-lnk">Quality</a></li>
+    <li><a href="#faq" class="mob-lnk">FAQ</a></li>
+    <li><a href="#dist" class="mob-lnk">Wholesale</a></li>
+  </ul>
+  <a href="#contact" class="m-cta mob-lnk">Contact Us</a>
+</div>
+
+<!-- ═══ HERO SLIDER ═══ -->
+<section id="hero" role="region" aria-label="Hero slideshow">
+
+  <div class="slide s1 active">
+    <div class="s-inner">
+      <div class="s-kicker"><div class="kicker-dash"></div>Iyke Nova Global Ventures</div>
+      <h1 class="s-h">Nigeria's<br><em>Top Quality</em><br>Brand</h1>
+      <p class="s-sub">Crafting premium biscuits, crackers, and snacks that Nigerian families love — NAFDAC certified, trusted, delivered nationwide.</p>
+      <div class="s-btns">
+        <a href="#products" class="btn btn-wht">Explore Products</a>
+        <a href="#about" class="btn btn-ghost">Our Story</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide s2">
+    <div class="s-inner">
+      <div class="s-kicker"><div class="kicker-dash"></div>Our Bestselling Range</div>
+      <h1 class="s-h">Cool<br><em>Crackers</em><br>19 Varieties</h1>
+      <p class="s-sub">Our largest and most loved range — from plain to flavoured, there's a perfect cracker for every taste and every occasion.</p>
+      <div class="s-btns">
+        <a href="https://iykenova.com/product-category/crackers/" class="btn btn-wht">Browse Crackers</a>
+        <a href="https://iykenova.com/shop/" class="btn btn-ghost">Full Shop</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide s3">
+    <div class="s-inner">
+      <div class="s-kicker"><div class="kicker-dash"></div>PaPa Hut Range</div>
+      <h1 class="s-h">Natural<br><em>Nutrient</em><br>Biscuits</h1>
+      <p class="s-sub">Made with wholesome, natural ingredients — our PaPa Hut range delivers great taste alongside genuine nutritional value for your family.</p>
+      <div class="s-btns">
+        <a href="https://iykenova.com/product-category/papa-hut/" class="btn btn-wht">Browse PaPa Hut</a>
+        <a href="#quality" class="btn btn-ghost">Our Quality</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide s4">
+    <div class="s-inner">
+      <div class="s-kicker"><div class="kicker-dash"></div>Our Distribution Network</div>
+      <h1 class="s-h">35+ Partners<br>Across<br><em>Nigeria</em></h1>
+      <p class="s-sub">From Lagos to Kano, Port Harcourt to Abuja — our growing distributor network ensures Iyke Nova products are always within reach.</p>
+      <div class="s-btns">
+        <a href="#dist" class="btn btn-wht">Become a Distributor</a>
+        <a href="#contact" class="btn btn-ghost">Talk to Us</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide s5">
+    <div class="s-inner">
+      <div class="s-kicker"><div class="kicker-dash"></div>Trade &amp; Wholesale</div>
+      <h1 class="s-h">Grow Your<br>Business<br><em>With Us</em></h1>
+      <p class="s-sub">Whether you are a retailer or an entrepreneur, our wholesale and distributor programmes offer the support and terms to help you succeed.</p>
+      <div class="s-btns">
+        <a href="https://iykenova.com/distributor-wholesale-application/" class="btn btn-wht">Apply Now</a>
+        <a href="#faq" class="btn btn-ghost">Read the FAQ</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- controls -->
+  <div class="s-arrows">
+    <div class="s-arr" id="s-prev">&#8592;</div>
+    <div class="s-arr" id="s-next">&#8594;</div>
+  </div>
+  <div class="s-counter"><span id="s-cur">01</span> / 05</div>
+
+  <div class="s-tabs" role="tablist">
+    <div class="s-tab on" data-i="0" role="tab"><span class="s-tab-lbl">Top Quality Brand</span><div class="s-prog"></div></div>
+    <div class="s-tab" data-i="1" role="tab"><span class="s-tab-lbl">Cool Crackers</span><div class="s-prog"></div></div>
+    <div class="s-tab" data-i="2" role="tab"><span class="s-tab-lbl">Nutrient Biscuits</span><div class="s-prog"></div></div>
+    <div class="s-tab" data-i="3" role="tab"><span class="s-tab-lbl">Distribution</span><div class="s-prog"></div></div>
+    <div class="s-tab" data-i="4" role="tab"><span class="s-tab-lbl">Grow With Us</span><div class="s-prog"></div></div>
+  </div>
+
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<div id="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="t-item"><span class="t-dot"></span>Iyke Nova Global Ventures</span>
+    <span class="t-item"><span class="t-dot"></span>NAFDAC Certified Products</span>
+    <span class="t-item"><span class="t-dot"></span>35+ Distributors Nationwide</span>
+    <span class="t-item"><span class="t-dot"></span>250+ Partner Supermarkets</span>
+    <span class="t-item"><span class="t-dot"></span>6 Product Categories</span>
+    <span class="t-item"><span class="t-dot"></span>45+ Active Outlets</span>
+    <span class="t-item"><span class="t-dot"></span>Quality You Can Taste</span>
+    <span class="t-item"><span class="t-dot"></span>Iyke Nova Global Ventures</span>
+    <span class="t-item"><span class="t-dot"></span>NAFDAC Certified Products</span>
+    <span class="t-item"><span class="t-dot"></span>35+ Distributors Nationwide</span>
+    <span class="t-item"><span class="t-dot"></span>250+ Partner Supermarkets</span>
+    <span class="t-item"><span class="t-dot"></span>6 Product Categories</span>
+    <span class="t-item"><span class="t-dot"></span>45+ Active Outlets</span>
+    <span class="t-item"><span class="t-dot"></span>Quality You Can Taste</span>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="eyebrow ey-o r">Who We Are</div>
+  <h2 class="sec-h r d1">Built on <em>Quality,</em> Driven by Purpose</h2>
+  <div class="about-grid">
+    <div>
+      <p class="ab-body r d1">At Iyke Nova Global Ventures, we are passionate about manufacturing snacks and biscuits that Nigerian families trust. Every product is crafted using the finest ingredients, advanced automated processes, and the highest standards of food safety.</p>
+      <div class="pullquote r d2">
+        <div class="pq-t">"We strive to create and provide edible, quality products that will put a smile on your face."</div>
+        <div class="pq-a">— Iyke Nova Global Ventures</div>
+      </div>
+      <p class="ab-body r d2">With 35+ dedicated distributors and a presence in over 250 supermarkets nationwide, we are Nigeria's trusted name in the snack aisle — growing every year.</p>
+      <div class="ab-feats r d3">
+        <div class="ab-feat"><div class="af-icon">🏭</div><div><div class="af-title">Automated Production</div><div class="af-body">Fully automated lines ensure consistent quality and minimal contamination risk in every batch.</div></div></div>
+        <div class="ab-feat"><div class="af-icon">🛡️</div><div><div class="af-title">NAFDAC Certified</div><div class="af-body">All products meet national food safety standards — certified and regularly reviewed by authorities.</div></div></div>
+        <div class="ab-feat"><div class="af-icon">🚚</div><div><div class="af-title">Nationwide Distribution</div><div class="af-body">Reaching consumers across all major states through an efficient distributor and retail network.</div></div></div>
+        <div class="ab-feat"><div class="af-icon">📊</div><div><div class="af-title">Quality Improvement Programs</div><div class="af-body">Continuous QIPs and product assessments keep our benchmarks ahead of industry standards.</div></div></div>
+      </div>
+      <a href="https://iykenova.com/about-us/" class="btn btn-g r d4" style="margin-top:.5rem;">Read Our Story</a>
+    </div>
+    <div>
+      <div class="about-card r d2">
+        <img src="https://iykenova.com/wp-content/uploads/2017/08/iyke-nova-logo.png" alt="Iyke Nova Logo">
+        <div class="ac-name">Iyke Nova Global Ventures Ltd</div>
+        <div class="ac-body">Nigeria's certified biscuit and snack manufacturer — known for quality, reach, and taste that families across the country love every day.</div>
+        <div class="ac-stats">
+          <div class="ac-s"><div class="ac-n" data-target="35">0</div><div class="ac-l">Distributors</div></div>
+          <div class="ac-s"><div class="ac-n" data-target="45">0</div><div class="ac-l">Outlets</div></div>
+          <div class="ac-s"><div class="ac-n" data-target="250">0</div><div class="ac-l">Supermarkets</div></div>
+          <div class="ac-s"><div class="ac-n" data-target="6">0</div><div class="ac-l">Product Lines</div></div>
+        </div>
+        <div class="ac-chips">
+          <span class="ac-chip">NAFDAC ✓</span>
+          <span class="ac-chip">SON Compliant</span>
+          <span class="ac-chip">Food Safe</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTS ═══ -->
+<section id="products">
+  <div class="prod-head">
+    <div>
+      <div class="eyebrow ey-g r">Our Range</div>
+      <h2 class="sec-h prod-h2 r d1">Six Lines of <em>Exceptional</em> Snacks</h2>
+    </div>
+    <a href="https://iykenova.com/shop/" class="btn btn-o r" style="white-space:nowrap;flex-shrink:0;">View Full Shop →</a>
+  </div>
+  <div class="prod-track-wrap" id="prod-wrap">
+    <div class="prod-row">
+      <div class="pc r">
+        <div class="pc-img pi1"><span class="pc-emoji">🍪</span><span class="pc-tag">Premium</span><span class="pc-cnt">2 products</span></div>
+        <div class="pc-body"><div class="pc-bar"></div><div class="pc-name">Cookies</div><div class="pc-desc">Rich, indulgent cookies made with premium ingredients for the perfect bite every time.</div><a href="https://iykenova.com/product-category/cookies/" class="pc-link">Browse Cookies</a></div>
+      </div>
+      <div class="pc r d1">
+        <div class="pc-img pi2"><span class="pc-emoji">🥨</span><span class="pc-tag">Bestseller</span><span class="pc-cnt">19 products</span></div>
+        <div class="pc-body"><div class="pc-bar"></div><div class="pc-name">Crackers</div><div class="pc-desc">Our widest range — 19 cracker varieties from plain to flavoured, perfect for snacking and entertaining.</div><a href="https://iykenova.com/product-category/crackers/" class="pc-link">Browse Crackers</a></div>
+      </div>
+      <div class="pc r d2">
+        <div class="pc-img pi3"><span class="pc-emoji">🥜</span><span class="pc-tag">Nutritious</span><span class="pc-cnt">2 products</span></div>
+        <div class="pc-body"><div class="pc-bar"></div><div class="pc-name">Nuts</div><div class="pc-desc">Quality nuts, carefully selected and processed for maximum nutritional value and natural flavour.</div><a href="https://iykenova.com/product-category/nuts/" class="pc-link">Browse Nuts</a></div>
+      </div>
+      <div class="pc r d1">
+        <div class="pc-img pi4"><span class="pc-emoji">🫙</span><span class="pc-tag">Natural</span><span class="pc-cnt">5 products</span></div>
+        <div class="pc-body"><div class="pc-bar"></div><div class="pc-name">PaPa Hut</div><div class="pc-desc">Natural nutrient biscuits crafted with wholesome ingredients — great taste that is good for you too.</div><a href="https://iykenova.com/product-category/papa-hut/" class="pc-link">Browse PaPa Hut</a></div>
+      </div>
+      <div class="pc r d2">
+        <div class="pc-img pi5"><span class="pc-emoji">🎂</span><span class="pc-tag">Classic</span><span class="pc-cnt">1 product</span></div>
+        <div class="pc-body"><div class="pc-bar"></div><div class="pc-name">Short Cake</div><div class="pc-desc">A classic Nigerian favourite — buttery, crumbly short cake that brings back warm memories every bite.</div><a href="https://iykenova.com/product-category/short-cake/" class="pc-link">Browse Short Cake</a></div>
+      </div>
+      <div class="pc r d3">
+        <div class="pc-img pi6"><span class="pc-emoji">🍬</span><span class="pc-tag">Light &amp; Crispy</span><span class="pc-cnt">7 products</span></div>
+        <div class="pc-body"><div class="pc-bar"></div><div class="pc-name">Wafers</div><div class="pc-desc">Light, crispy wafers in a range of flavours — the perfect airy snack for any time of day.</div><a href="https://iykenova.com/product-category/wafers/" class="pc-link">Browse Wafers</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="prod-ctrl r">
+    <button class="pctrl-btn" id="p-left">&#8592;</button>
+    <button class="pctrl-btn" id="p-right">&#8594;</button>
+  </div>
+</section>
+
+<!-- ═══ QUALITY ═══ -->
+<section id="quality">
+  <div class="q-intro r">
+    <div class="eyebrow ey-g" style="justify-content:center">Standards &amp; Compliance</div>
+    <h2 class="sec-h" style="margin-top:.5rem">Uncompromising <em>Quality</em> at Every Step</h2>
+  </div>
+  <div class="q-grid">
+    <div class="q-tile r" data-n="01"><span class="q-icon">🏭</span><div class="q-title">Automated Manufacturing</div><div class="q-text">Fully automated production lines ensure consistent quality, minimal contamination risk, and reliable output across every batch.</div></div>
+    <div class="q-tile r d1" data-n="02"><span class="q-icon">🛡️</span><div class="q-title">NAFDAC Certification</div><div class="q-text">All Iyke Nova products are NAFDAC certified and regularly reviewed by Nigerian food authority bodies — your guarantee of safety.</div></div>
+    <div class="q-tile r d2" data-n="03"><span class="q-icon">📈</span><div class="q-title">Quality Improvement Programs</div><div class="q-text">Ongoing QIP assessments ensure we maintain high benchmarks and continuously improve across all product lines.</div></div>
+    <div class="q-tile r d3" data-n="04"><span class="q-icon">🌾</span><div class="q-title">Premium Ingredients</div><div class="q-text">We source only the finest ingredients — vetted for freshness, nutritional value, and compliance with food safety standards.</div></div>
+  </div>
+  <div class="q-bar r d2">
+    <div class="qb-label">Our Certifications &amp; Compliance</div>
+    <div class="qb-chips">
+      <div class="qb-chip hi">NAFDAC Certified</div>
+      <div class="qb-chip">Standards Organisation of Nigeria</div>
+      <div class="qb-chip">Food Safety Compliant</div>
+      <div class="qb-chip">QIP Framework</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DISTRIBUTOR ═══ -->
+<section id="dist" style="padding:0">
+  <div class="dist-panel dp-g r">
+    <div class="dist-sub">For Retailers</div>
+    <div class="dist-h">Purchase<br>on Wholesale</div>
+    <div class="dist-body">Stock your store with Nigeria's most loved biscuits and snacks at competitive wholesale prices. Reliable supply, consistent delivery, and a product range your customers will keep coming back for.</div>
+    <a href="https://iykenova.com/distributor-wholesale-application/" class="btn btn-wht">Apply for Wholesale</a>
+  </div>
+  <div class="dist-panel dp-d r d2">
+    <div class="dist-sub">For Entrepreneurs</div>
+    <div class="dist-h">Become<br>a Distributor</div>
+    <div class="dist-body">Join 35+ distributors across Nigeria. Gain exclusive territory rights, dedicated marketing support, and direct access to our full and growing product portfolio on terms that work for your business.</div>
+    <a href="https://iykenova.com/distributor-wholesale-application/" class="btn btn-o">Apply as Distributor</a>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="eyebrow ey-o r">Have Questions?</div>
+  <h2 class="sec-h r d1">Frequently Asked <em>Questions</em></h2>
+  <div class="faq-grid">
+    <div class="faq-sidebar r d1">
+      <p class="faq-desc">Everything you need to know about our products, certifications, wholesale programmes, and how to partner with Iyke Nova.</p>
+      <div class="faq-box">
+        <div class="fb-title">Still have questions?</div>
+        <div class="fb-body">Our team is happy to help with any enquiry — product, trade, or distribution related.</div>
+        <a href="https://iykenova.com/contact-us/" class="fb-lnk">Contact Us →</a>
+      </div>
+    </div>
+    <div class="faq-items r d2">
+      <div class="fi">
+        <button class="fi-btn"><span class="fi-num">01</span><span class="fi-q">What types of products does Iyke Nova manufacture?</span><span class="fi-icon">+</span></button>
+        <div class="fi-ans"><p>Iyke Nova manufactures across <strong>six product categories</strong>: Cookies, Crackers (19 products — our largest range), Nuts, PaPa Hut natural nutrient biscuits, Short Cake, and Wafers. All products are made in fully automated, NAFDAC-certified facilities.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fi-btn"><span class="fi-num">02</span><span class="fi-q">Are Iyke Nova products NAFDAC certified?</span><span class="fi-icon">+</span></button>
+        <div class="fi-ans"><p>Yes — <strong>all Iyke Nova products are NAFDAC certified</strong> and approved by relevant Nigerian food authority bodies. We also run ongoing Quality Improvement Programs (QIPs) to continuously uphold and exceed national food safety standards.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fi-btn"><span class="fi-num">03</span><span class="fi-q">Where can I find Iyke Nova products near me?</span><span class="fi-icon">+</span></button>
+        <div class="fi-ans"><p>Our products are available in <strong>over 250 supermarkets across Nigeria</strong>, through 35+ distributors and 45+ retail outlets. If you cannot find us in your area, contact us and we will point you to your nearest stockist or arrange direct supply.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fi-btn"><span class="fi-num">04</span><span class="fi-q">How do I become an Iyke Nova distributor?</span><span class="fi-icon">+</span></button>
+        <div class="fi-ans"><p>Visit our <strong>Distributor/Wholesale Application page</strong> and submit your details. Our team reviews all applications promptly. Distributors benefit from exclusive territory arrangements, competitive pricing, marketing support, and reliable supply direct from our facilities.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fi-btn"><span class="fi-num">05</span><span class="fi-q">Does Iyke Nova offer wholesale for retailers?</span><span class="fi-icon">+</span></button>
+        <div class="fi-ans"><p>Absolutely. Our <strong>wholesale programme</strong> is open to retailers, supermarkets, and shop owners. You get access to the full product range at competitive prices with reliable delivery. Visit the Distributor/Wholesale Application page to apply or call us for a quote.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fi-btn"><span class="fi-num">06</span><span class="fi-q">What is the PaPa Hut range?</span><span class="fi-icon">+</span></button>
+        <div class="fi-ans"><p>PaPa Hut is our <strong>natural nutrient biscuit line</strong> — crafted with wholesome, natural ingredients to deliver great taste alongside real nutritional value. It currently includes 5 products and is one of our fastest-growing categories.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fi-btn"><span class="fi-num">07</span><span class="fi-q">How can I contact Iyke Nova?</span><span class="fi-icon">+</span></button>
+        <div class="fi-ans"><p>Email us at <strong>info@iykenova.com</strong>, or call <strong>+234 803 505 1095</strong> / <strong>+234 817 673 8181</strong>. You can also use the contact form at iykenova.com/contact-us/ for formal enquiries, trade applications, or general questions.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="r">
+      <a href="#" class="cb-logo"><img src="https://iykenova.com/wp-content/uploads/2017/08/iyke-nova-logo.png" alt="Logo"><div class="cb-name">Iyke <em>Nova</em></div></a>
+      <div class="cb-tag">Iyke Nova Global Ventures Ltd — Nigeria's certified biscuit and snack manufacturer, trusted by millions across the country.</div>
+    </div>
+    <div class="r d1">
+      <div class="cc-title">Quick Links</div>
+      <div class="cc-links">
+        <a href="https://iykenova.com/about-us/" class="cc-link">About Us</a>
+        <a href="https://iykenova.com/shop/" class="cc-link">Our Products</a>
+        <a href="https://iykenova.com/distributor-wholesale-application/" class="cc-link">Wholesale / Distributor</a>
+        <a href="https://iykenova.com/contact-us/" class="cc-link">Contact Us</a>
+      </div>
+    </div>
+    <div class="r d2">
+      <div class="cc-cta">Ready to partner <em>with us?</em></div>
+      <div class="cc-lbl">Email</div><div class="cc-val">info@iykenova.com</div>
+      <div class="cc-lbl">Phone</div><div class="cc-val">+234 803 505 1095</div>
+      <div class="cc-val" style="margin-top:.2rem">+234 817 673 8181</div>
+      <div style="margin-top:1.5rem;display:flex;gap:.8rem;flex-wrap:wrap;">
+        <a href="https://iykenova.com/distributor-wholesale-application/" class="btn btn-o">Apply for Wholesale →</a>
+        <a href="https://iykenova.com/contact-us/" class="btn btn-ghost">Send a Message</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="fc">Copyright 2026 © Iyke Nova Global Ventures Ltd. All rights reserved. 🇳🇬</div>
+  <ul class="fn">
+    <li><a href="https://iykenova.com/about-us/">About</a></li>
+    <li><a href="https://iykenova.com/shop/">Products</a></li>
+    <li><a href="https://iykenova.com/distributor-wholesale-application/">Wholesale</a></li>
+    <li><a href="https://iykenova.com/contact-us/">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+/* ── HAMBURGER ── */
+const ham=document.getElementById('ham'),mob=document.getElementById('mob-menu'),nav=document.getElementById('nav');
+ham.addEventListener('click',()=>{
+  const open=mob.classList.toggle('open');
+  ham.classList.toggle('open',open);
+  ham.setAttribute('aria-expanded',open);
+});
+document.querySelectorAll('.mob-lnk').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('open');ham.classList.remove('open');ham.setAttribute('aria-expanded','false');}));
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>50));
+
+/* ── SLIDER ── */
+const slides=document.querySelectorAll('.slide'),tabs=document.querySelectorAll('.s-tab'),cur$=document.getElementById('s-cur');
+let cur=0,timer;
+const DELAY=5000;
+
+function goTo(n,restart=true){
+  slides[cur].classList.remove('active');
+  tabs[cur].classList.remove('on');
+  const oldProg=tabs[cur].querySelector('.s-prog');
+  oldProg.style.transition='none';oldProg.style.width='0%';
+
+  cur=(n+slides.length)%slides.length;
+
+  slides[cur].classList.add('active');
+  tabs[cur].classList.add('on');
+  cur$.textContent=String(cur+1).padStart(2,'0');
+
+  const prog=tabs[cur].querySelector('.s-prog');
+  prog.style.transition='none';prog.style.width='0%';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{prog.style.transition='width 5s linear';prog.style.width='100%';}));
+
+  if(restart){clearInterval(timer);timer=setInterval(()=>goTo(cur+1),DELAY);}
+}
+
+// init first progress bar
+(()=>{const p=tabs[0].querySelector('.s-prog');p.style.transition='width 5s linear';p.style.width='100%';timer=setInterval(()=>goTo(cur+1),DELAY);})();
+
+document.getElementById('s-next').addEventListener('click',()=>goTo(cur+1));
+document.getElementById('s-prev').addEventListener('click',()=>goTo(cur-1));
+tabs.forEach(t=>t.addEventListener('click',()=>goTo(+t.dataset.i)));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')goTo(cur+1);if(e.key==='ArrowLeft')goTo(cur-1);});
+
+// touch swipe
+let tx=0;
+document.getElementById('hero').addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.getElementById('hero').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)goTo(dx<0?cur+1:cur-1);},{passive:true});
+
+/* ── SCROLL REVEAL ── */
+const rEls=document.querySelectorAll('.r');
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.1});
+rEls.forEach(el=>ro.observe(el));
+
+/* ── COUNTERS ── */
+const ctrs=document.querySelectorAll('[data-target]');
+const co=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,tgt=+el.dataset.target,suf=tgt>=6?'+':'';
+    let v=0;const step=tgt/60;
+    const t=setInterval(()=>{v=Math.min(v+step,tgt);el.textContent=Math.round(v)+suf;if(v>=tgt)clearInterval(t);},16);
+    co.unobserve(el);
+  });
+},{threshold:.5});
+ctrs.forEach(c=>co.observe(c));
+
+/* ── PRODUCT SCROLL ── */
+const pw=document.getElementById('prod-wrap');
+document.getElementById('p-left').addEventListener('click',()=>pw.scrollBy({left:-300,behavior:'smooth'}));
+document.getElementById('p-right').addEventListener('click',()=>pw.scrollBy({left:300,behavior:'smooth'}));
+
+/* ── FAQ ── */
+document.querySelectorAll('.fi-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.fi'),open=item.classList.contains('open');
+    document.querySelectorAll('.fi.open').forEach(i=>i.classList.remove('open'));
+    if(!open)item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
