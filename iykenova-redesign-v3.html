@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Iyke Nova Global Ventures Ltd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Fonts (you can switch to your preferred font) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Colors */
+      --color-bg: #f5f3ee;
+      --color-surface: #ffffff;
+      --color-surface-soft: #f0eee8;
+      --color-primary: #0f7b4f;  /* deep green */
+      --color-primary-dark: #0a5837;
+      --color-accent: #f3a43b;   /* warm orange */
+      --color-text: #222222;
+      --color-text-muted: #5f5f5f;
+      --color-border: rgba(0, 0, 0, 0.08);
+
+      /* Spacing */
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+
+      /* Radius */
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-full: 999px;
+
+      /* Shadows */
+      --shadow-sm: 0 4px 10px rgba(15, 40, 20, 0.06);
+      --shadow-md: 0 10px 30px rgba(15, 40, 20, 0.1);
+
+      /* Max widths */
+      --content-default: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout helpers */
+    .container {
+      max-width: var(--content-default);
+      margin-inline: auto;
+      padding-inline: var(--space-4);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(245, 243, 238, 0.9);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: var(--space-3);
+      gap: var(--space-4);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 40%;
+      background: radial-gradient(circle at 30% 30%, #f9f2e5, #0f7b4f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-text);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 1.3rem;
+      border-radius: var(--radius-full);
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-dark);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: rgba(0, 0, 0, 0.12);
+      color: var(--color-text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: rgba(15, 123, 79, 0.04);
+    }
+
+    /* Hero */
+    .hero {
+      padding-block: clamp(var(--space-8), 10vh, var(--space-16));
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: var(--radius-full);
+      background-color: rgba(15, 123, 79, 0.07);
+      color: var(--color-primary);
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: var(--space-3);
+    }
+
+    .hero-heading {
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtext {
+      font-size: 0.98rem;
+      color: var(--color-text-muted);
+      max-width: 34rem;
+      margin-bottom: var(--space-5);
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: center;
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    .hero-meta-item span {
+      display: block;
+    }
+
+    .hero-meta-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.15rem;
+    }
+
+    .hero-meta-value {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .hero-image-card {
+      background-color: var(--color-surface);
+      border-radius: 1.5rem;
+      padding: var(--space-4);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      position: absolute;
+      top: var(--space-3);
+      left: var(--space-3);
+      padding: 0.2rem 0.7rem;
+      border-radius: var(--radius-full);
+      background-color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-image {
+      border-radius: 1.2rem;
+      overflow: hidden;
+      margin-bottom: var(--space-3);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+    }
+
+    .hero-stat-number {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--color-primary);
+    }
+
+    /* Sections */
+    section {
+      padding-block: clamp(var(--space-8), 7vh, var(--space-12));
+    }
+
+    .section-heading {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-2);
+    }
+
+    .section-subtitle {
+      font-size: 0.96rem;
+      color: var(--color-text-muted);
+      max-width: 32rem;
+      margin-bottom: var(--space-6);
+    }
+
+    /* Product highlights */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    .product-card {
+      background-color: var(--color-surface);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      border: 1px solid var(--color-border);
+    }
+
+    .product-thumb {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background-color: var(--color-surface-soft);
+      aspect-ratio: 4 / 3;
+    }
+
+    .product-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .product-text {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .product-link {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--color-primary);
+      margin-top: auto;
+    }
+
+    /* Why Iyke Nova */
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: var(--space-8);
+      align-items: start;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    .pillar {
+      background-color: var(--color-surface);
+      padding: var(--space-4);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .pillar-title {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      font-size: 0.96rem;
+    }
+
+    .pillar-text {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Categories */
+    .categories {
+      background-color: var(--color-surface-soft);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    .category-card {
+      background-color: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+    }
+
+    .category-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .category-name {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .category-text {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Distributor section */
+    .distributor {
+      background: linear-gradient(135deg, #0f7b4f, #0a5837);
+      color: #ffffff;
+      border-radius: 1.8rem;
+      padding: var(--space-8);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .distributor h2 {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-2);
+    }
+
+    .distributor p {
+      font-size: 0.96rem;
+      margin-bottom: var(--space-4);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .distributor-list {
+      display: grid;
+      gap: var(--space-2);
+      font-size: 0.9rem;
+      margin-bottom: var(--space-4);
+    }
+
+    .distributor-badge {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-1);
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .distributor .btn-primary {
+      background-color: #ffffff;
+      color: var(--color-primary-dark);
+      box-shadow: none;
+    }
+
+    .distributor .btn-primary:hover {
+      background-color: #f3f0e7;
+    }
+
+    .distributor-aside {
+      background-color: rgba(0, 0, 0, 0.15);
+      padding: var(--space-4);
+      border-radius: 1.2rem;
+      font-size: 0.86rem;
+    }
+
+    .distributor-aside h3 {
+      margin-bottom: var(--space-2);
+      font-size: 1rem;
+    }
+
+    .distributor-aside p {
+      margin-bottom: var(--space-2);
+    }
+
+    /* Stats / social proof */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .stat-card {
+      padding: var(--space-4);
+      background-color: var(--color-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      text-align: left;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    .testimonial {
+      max-width: 40rem;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      border-left: 3px solid var(--color-accent);
+      padding-left: var(--space-4);
+    }
+
+    .testimonial strong {
+      color: var(--color-text);
+    }
+
+    /* About & contact */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+    }
+
+    .about-text a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+
+    .contact-strip {
+      background-color: var(--color-surface-soft);
+      border-radius: 1.2rem;
+      padding: var(--space-4);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+      justify-content: space-between;
+      margin-top: var(--space-6);
+    }
+
+    .contact-details {
+      font-size: 0.86rem;
+      color: var(--color-text-muted);
+    }
+
+    .contact-details strong {
+      color: var(--color-text);
+    }
+
+    footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding-block: var(--space-4);
+      margin-top: var(--space-8);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .why-grid,
+      .distributor,
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-block: var(--space-8);
+      }
+
+      .hero-grid {
+        gap: var(--space-6);
+      }
+
+      .hero-image-card {
+        order: -1;
+      }
+
+      .distributor {
+        padding: var(--space-6);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav {
+        padding-block: var(--space-3);
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .product-grid,
+      .category-grid,
+      .stats-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .distributor {
+        padding: var(--space-5);
+      }
+
+      .contact-strip {
+        align-items: flex-start;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container nav">
+      <div class="nav-left">
+        <div class="logo-mark">IN</div>
+        <div class="brand-text">
+          <div class="brand-name">Iyke Nova</div>
+          <div class="brand-tagline">Global Ventures Ltd</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#hero">Home</a>
+        <a href="#products">Products</a>
+        <a href="#distributor">Distributor/Wholesale</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#distributor" class="btn btn-outline">Become a Distributor</a>
+        <a href="#products" class="btn btn-primary">Explore Products</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section id="hero" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-eyebrow">
+            <span>Trusted food products for African homes</span>
+          </div>
+          <h1 class="hero-heading">
+            Delivering quality food brands with consistency and care.
+          </h1>
+          <p class="hero-subtext">
+            Iyke Nova Global Ventures Ltd partners with retailers and distributors
+            to bring safe, high‑quality food products to households across Nigeria and beyond.
+          </p>
+          <div class="hero-ctas">
+            <a href="#products" class="btn btn-primary">Explore products</a>
+            <a href="#distributor" class="btn btn-outline">Become a distributor</a>
+          </div>
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Focus</span>
+              <span class="hero-meta-value">Food chain products</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Location</span>
+              <span class="hero-meta-value">Lagos, Nigeria</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Partners</span>
+              <span class="hero-meta-value">Retailers & distributors</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-image-card">
+          <div class="hero-badge">Flagship product range</div>
+          <div class="hero-image">
+            <!-- Replace with your real product hero image -->
+            <img src="https://picsum.photos/seed/iykenova-hero/800/600" alt="Iyke Nova food products displayed on a table" loading="lazy" />
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-number">Quality‑first</div>
+              <div>Consistent standards from sourcing to delivery.</div>
+            </div>
+            <div>
+              <div class="hero-stat-number">Reliable supply</div>
+              <div>Built for volume and on‑time deliveries.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Product highlights -->
+    <section id="products">
+      <div class="container">
+        <h2 class="section-heading">Our flagship products</h2>
+        <p class="section-subtitle">
+          We’ve raised the bar in food chain products with a focus on quality, safety,
+          and taste. Highlight a few of your key brands here.
+        </p>
+        <div class="product-grid">
+          <!-- Product 1 -->
+          <article class="product-card">
+            <div class="product-thumb">
+              <!-- Replace with real product image -->
+              <img src="https://picsum.photos/seed/iykenova-product-1/600/450" alt="Flagship product 1" loading="lazy" />
+            </div>
+            <div>
+              <h3 class="product-title">Product Name One</h3>
+              <p class="product-text">
+                A short description focusing on the main benefits, such as fortification,
+                shelf life, or consumer appeal.
+              </p>
+            </div>
+            <a href="https://iykenova.com" class="product-link" target="_blank" rel="noopener noreferrer">
+              View product details →
+            </a>
+          </article>
+
+          <!-- Product 2 -->
+          <article class="product-card">
+            <div class="product-thumb">
+              <img src="https://picsum.photos/seed/iykenova-product-2/600/450" alt="Flagship product 2" loading="lazy" />
+            </div>
+            <div>
+              <h3 class="product-title">Product Name Two</h3>
+              <p class="product-text">
+                Briefly describe what makes this product stand out in your category
+                and why retailers stock it.
+              </p>
+            </div>
+            <a href="https://iykenova.com" class="product-link" target="_blank" rel="noopener noreferrer">
+              View product details →
+            </a>
+          </article>
+
+          <!-- Product 3 -->
+          <article class="product-card">
+            <div class="product-thumb">
+              <img src="https://picsum.photos/seed/iykenova-product-3/600/450" alt="Flagship product 3" loading="lazy" />
+            </div>
+            <div>
+              <h3 class="product-title">Product Name Three</h3>
+              <p class="product-text">
+                Another key item in your portfolio, with a concise benefit‑focused
+                description aligned to your buyers.
+              </p>
+            </div>
+            <a href="https://iykenova.com" class="product-link" target="_blank" rel="noopener noreferrer">
+              View product details →
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Iyke Nova -->
+    <section>
+      <div class="container why-grid">
+        <div>
+          <h2 class="section-heading">Why Iyke Nova?</h2>
+          <p class="section-subtitle">
+            Iyke Nova Global Ventures Ltd is built on a commitment to quality, reliability,
+            and long‑term partnerships. We combine efficient distribution with a strong
+            focus on product safety and consumer satisfaction.
+          </p>
+          <p class="section-subtitle">
+            From our base in Lagos, we support distributors, wholesalers, and retailers
+            with dependable supply and responsive support.
+          </p>
+        </div>
+        <div class="pillars">
+          <article class="pillar">
+            <h3 class="pillar-title">Quality‑first sourcing</h3>
+            <p class="pillar-text">
+              Products are selected and produced with strict attention to food safety,
+              packaging standards, and consistency.
+            </p>
+          </article>
+          <article class="pillar">
+            <h3 class="pillar-title">Consistent supply</h3>
+            <p class="pillar-text">
+              We organise our operations around reliability so your shelves stay stocked,
+              not empty.
+            </p>
+          </article>
+          <article class="pillar">
+            <h3 class="pillar-title">Nationwide reach</h3>
+            <p class="pillar-text">
+              Working with partners across Nigeria, with the capacity to support
+              regional expansion.
+            </p>
+          </article>
+          <article class="pillar">
+            <h3 class="pillar-title">Regulatory compliance</h3>
+            <p class="pillar-text">
+              Include NAFDAC and other certifications here to reassure buyers and
+              consumers.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product categories -->
+    <section class="categories">
+      <div class="container">
+        <h2 class="section-heading">Product categories</h2>
+        <p class="section-subtitle">
+          Give visitors a quick overview of your range, then link them to the
+          relevant catalog or category pages.
+        </p>
+        <div class="category-grid">
+          <article class="category-card">
+            <div class="category-label">Category</div>
+            <div class="category-name">Grains & cereals</div>
+            <p class="category-text">
+              Rice, cereals, and other staple products for everyday cooking.
+            </p>
+          </article>
+          <article class="category-card">
+            <div class="category-label">Category</div>
+            <div class="category-name">Oils & condiments</div>
+            <p class="category-text">
+              Cooking oils and condiments, produced and packed to quality standards.
+            </p>
+          </article>
+          <article class="category-card">
+            <div class="category-label">Category</div>
+            <div class="category-name">Snacks & convenience</div>
+            <p class="category-text">
+              Ready‑to‑eat products and convenient options for busy consumers.
+            </p>
+          </article>
+          <article class="category-card">
+            <div class="category-label">Category</div>
+            <div class="category-name">Emerging brands</div>
+            <p class="category-text">
+              New food brands we are developing and growing with partners.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Distributor / Wholesale spotlight -->
+    <section id="distributor">
+      <div class="container">
+        <div class="distributor">
+          <div>
+            <div class="distributor-badge">Distributor & wholesale</div>
+            <h2>Grow with us as a distributor.</h2>
+            <p>
+              We work with distributors and wholesalers across Nigeria to expand
+              the reach of our brands. Join our network and benefit from reliable
+              supply, marketing support, and competitive margins.
+            </p>
+            <div class="distributor-list">
+              <div>• Flexible order quantities that match your market.</div>
+              <div>• Dedicated account support from our team.</div>
+              <div>• Marketing and in‑store activation support.</div>
+            </div>
+            <a
+              href="https://iykenova.com/distributor-wholesale-application/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Start distributor application
+            </a>
+          </div>
+          <aside class="distributor-aside">
+            <h3>How it works</h3>
+            <p>
+              1. Submit a brief application with your company details.<br />
+              2. Our team reviews and contacts you to discuss requirements.<br />
+              3. Agree terms, start placing orders, and receive ongoing support.
+            </p>
+            <p>
+              You can also contact our sales team directly if you have specific
+              questions or large‑volume requests.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social proof / stats -->
+    <section>
+      <div class="container">
+        <h2 class="section-heading">Built for long‑term partnerships</h2>
+        <p class="section-subtitle">
+          Share a few simple numbers or milestones to reinforce trust and show
+          that Iyke Nova is a stable, reliable partner.
+        </p>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Years in the food products industry*</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-number">X</div>
+            <div class="stat-label">Active distributors nationwide*</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-number">Y+</div>
+            <div class="stat-label">Retail outlets supplied*</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-number">Z</div>
+            <div class="stat-label">Core product lines*</div>
+          </article>
+        </div>
+        <div class="testimonial">
+          “Working with <strong>Iyke Nova</strong> has helped us improve product
+          availability and customer satisfaction across our stores.”<br />
+          <strong>– Replace with real distributor testimonial</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- About & contact -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <!-- Replace with an office, warehouse or team image -->
+          <img src="https://picsum.photos/seed/iykenova-about/900/650" alt="Iyke Nova team and operations" loading="lazy" />
+        </div>
+        <div class="about-text">
+          <h2 class="section-heading">About Iyke Nova Global Ventures Ltd</h2>
+          <p>
+            Iyke Nova Global Ventures Ltd is a Nigerian company focused on delivering
+            high‑quality food products with the professionalism and skill set our
+            partners expect.
+          </p>
+          <p>
+            From sourcing to distribution, our team works closely with retailers,
+            wholesalers, and distributors to ensure consistent quality and timely
+            delivery.
+          </p>
+          <a href="https://iykenova.com/about-us/" target="_blank" rel="noopener noreferrer">
+            Learn more about us →
+          </a>
+
+          <div id="contact" class="contact-strip">
+            <div class="contact-details">
+              <strong>Visit us</strong><br />
+              C8 Niger 1 Plaza, Int'l Center for Commerce,<br />
+              Trade Fair Complex, Badagry Expressway,<br />
+              Ojo, Lagos, Nigeria.
+            </div>
+            <div class="contact-details">
+              <strong>Contact</strong><br />
+              <!-- Replace with your real details -->
+              Phone: +234 XXX XXX XXXX<br />
+              Email: info@iykenova.com
+            </div>
+            <div>
+              <a href="https://iykenova.com/contact-us/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+                Contact sales
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Iyke Nova Global Ventures Ltd. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#hero">Home</a>
+        <a href="#products">Products</a>
+        <a href="#distributor">Distributor/Wholesale</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iyke Nova Global Ventures — Crafting Quality Since Day One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:    #1C0D04;
+    --bark:   #2E1A0E;
+    --gold:   #C8860A;
+    --gold2:  #E8A020;
+    --cream:  #FFF8F0;
+    --sand:   #F5E8D0;
+    --warm:   #EAD5B0;
+    --muted:  #8C6A4A;
+    --white:  #FFFFFF;
+    --radius: 4px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(28,13,4,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,134,10,0.2);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 0.8rem 5vw; }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 700; letter-spacing: 0.02em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--warm);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold); color: var(--ink) !important;
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    font-weight: 600 !important; transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold2) !important; color: var(--ink) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 10rem 5vw 6rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(200,134,10,0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,134,10,0.6) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-glow {
+    position: absolute; width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,134,10,0.12) 0%, transparent 70%);
+    top: -200px; right: -200px; pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute; width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,134,10,0.07) 0%, transparent 70%);
+    bottom: -100px; left: 10%; pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 7vw, 6.5rem);
+    font-weight: 700; line-height: 1.05;
+    color: var(--cream); max-width: 820px;
+    opacity: 0; transform: translateY(30px);
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+
+  .hero-subtitle {
+    margin-top: 2rem;
+    font-size: 1.1rem; font-weight: 300; line-height: 1.8;
+    color: var(--warm); max-width: 520px;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.65s forwards;
+  }
+
+  .hero-actions {
+    margin-top: 3rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.85s forwards;
+  }
+
+  .btn-primary {
+    background: var(--gold); color: var(--ink);
+    padding: 1rem 2.2rem; border-radius: 2px;
+    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1px solid rgba(255,248,240,0.3); color: var(--cream);
+    padding: 1rem 2.2rem; border-radius: 2px;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0; animation: fadeUp 0.8s 1.2s forwards;
+  }
+  .hero-scroll::after {
+    content: ''; display: block;
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── STATS BAND ── */
+  #stats {
+    background: var(--gold);
+    padding: 2.8rem 5vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-right: 1px solid rgba(28,13,4,0.2);
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 700;
+    color: var(--ink); line-height: 1;
+  }
+
+  .stat-label {
+    margin-top: 0.4rem;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(28,13,4,0.65);
+  }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding: 7rem 5vw; }
+
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block; width: 30px; height: 1px; background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 700; line-height: 1.15;
+    color: var(--ink);
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+    margin-top: 5rem;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-img-frame {
+    background: var(--bark);
+    border-radius: 2px;
+    aspect-ratio: 4/5;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+
+  .about-pattern {
+    position: absolute; inset: 0; opacity: 0.06;
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--gold) 0, var(--gold) 1px,
+      transparent 0, transparent 50%
+    );
+    background-size: 20px 20px;
+  }
+
+  .about-img-inner {
+    position: relative; z-index: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem; font-weight: 700; color: rgba(200,134,10,0.3);
+    line-height: 1;
+  }
+
+  .about-badge {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    width: 130px; height: 130px;
+    background: var(--gold); border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 20px 40px rgba(200,134,10,0.3);
+  }
+  .about-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 700; color: var(--ink); line-height: 1;
+  }
+  .about-badge-text {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(28,13,4,0.7);
+    text-align: center; max-width: 80px;
+  }
+
+  .about-content .section-title { margin-bottom: 1.5rem; }
+
+  .about-body {
+    font-size: 1.05rem; line-height: 1.9; color: #5A3E2B;
+    margin-bottom: 2rem;
+  }
+
+  .about-pillars {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .pillar {
+    padding: 1.2rem 1.4rem;
+    border: 1px solid var(--sand);
+    border-left: 3px solid var(--gold);
+    border-radius: 2px;
+    background: var(--cream);
+  }
+  .pillar-title {
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem;
+  }
+  .pillar-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── PRODUCTS ── */
+  #products { background: var(--cream); }
+
+  .products-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(28,13,4,0.12);
+  }
+
+  .product-thumb {
+    height: 200px;
+    background: var(--bark);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .product-thumb-pattern {
+    position: absolute; inset: 0; opacity: 0.08;
+    background-image: repeating-linear-gradient(
+      60deg,
+      var(--gold) 0, var(--gold) 1px,
+      transparent 0, transparent 30%
+    );
+    background-size: 24px 24px;
+  }
+  .product-thumb-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 700;
+    color: rgba(200,134,10,0.45);
+    position: relative; z-index: 1;
+  }
+  .product-thumb-tag {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--gold); color: var(--ink);
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 0.7rem;
+    border-radius: 1px;
+  }
+
+  .product-body { padding: 1.5rem 1.8rem 2rem; }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .product-count { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em; }
+  .product-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.2rem;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold); text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .product-link:hover { gap: 0.8rem; }
+  .product-link::after { content: '→'; }
+
+  /* ── QUALITY ── */
+  #quality {
+    background: var(--ink);
+    position: relative; overflow: hidden;
+  }
+  #quality .hero-grid-bg { opacity: 0.03; }
+
+  #quality .section-eyebrow { color: var(--gold); }
+  #quality .section-title { color: var(--cream); }
+
+  .quality-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .quality-card {
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(200,134,10,0.2);
+    border-radius: 2px;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .quality-card:hover {
+    border-color: var(--gold);
+    background: rgba(200,134,10,0.05);
+  }
+
+  .quality-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; font-weight: 700;
+    color: rgba(200,134,10,0.15); line-height: 1;
+    position: absolute; top: 1.5rem; right: 1.5rem;
+  }
+
+  .quality-icon-wrap {
+    width: 52px; height: 52px;
+    background: rgba(200,134,10,0.12);
+    border: 1px solid rgba(200,134,10,0.3);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .quality-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+  .quality-text { font-size: 0.9rem; line-height: 1.8; color: var(--muted); }
+
+  .quality-certs {
+    margin-top: 5rem; padding-top: 3rem;
+    border-top: 1px solid rgba(200,134,10,0.15);
+    display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
+  }
+  .quality-certs-label {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted);
+    white-space: nowrap;
+  }
+  .cert-badge {
+    padding: 0.6rem 1.4rem;
+    border: 1px solid rgba(200,134,10,0.3);
+    border-radius: 2px;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em;
+    color: var(--warm);
+  }
+
+  /* ── DISTRIBUTOR CTA ── */
+  #distributor {
+    background: var(--sand);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  .dist-panel {
+    padding: 7rem 5vw;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .dist-panel:first-child { background: var(--white); }
+  .dist-panel:last-child { background: var(--bark); }
+
+  .dist-panel:last-child .section-eyebrow { color: var(--gold); }
+  .dist-panel:last-child .section-title { color: var(--cream); }
+  .dist-panel:last-child .dist-body { color: var(--warm); }
+
+  .dist-body {
+    font-size: 1.05rem; line-height: 1.8; color: #5A3E2B;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  /* ── CONTACT STRIP ── */
+  #contact {
+    background: var(--ink);
+    padding: 4rem 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 2rem;
+  }
+
+  .contact-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 700; color: var(--cream);
+  }
+  .contact-label span { color: var(--gold); font-style: italic; }
+
+  .contact-items {
+    display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
+  }
+  .contact-item {
+    display: flex; flex-direction: column;
+  }
+  .contact-item-label {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem;
+  }
+  .contact-item a,
+  .contact-item span {
+    font-size: 0.95rem; color: var(--cream); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item a:hover { color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #120700;
+    padding: 4rem 5vw 2rem;
+  }
+
+  .footer-top {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 3rem; flex-wrap: wrap;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(200,134,10,0.1);
+  }
+
+  .footer-brand { max-width: 280px; }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 700; color: var(--cream);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline {
+    margin-top: 1rem;
+    font-size: 0.85rem; line-height: 1.7; color: var(--muted);
+  }
+
+  .footer-nav { display: flex; gap: 5rem; flex-wrap: wrap; }
+
+  .footer-col-title {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-links a {
+    font-size: 0.85rem; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 2rem;
+    font-size: 0.78rem; color: rgba(140,106,74,0.6);
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    #stats { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .about-grid, .products-grid,
+    .quality-grid, #distributor { grid-template-columns: 1fr; }
+    .about-badge { right: 0; }
+    .products-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    #contact { flex-direction: column; }
+    .footer-top { flex-direction: column; }
+    .footer-nav { gap: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Iyke <span>Nova</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#quality">Quality</a></li>
+    <li><a href="#distributor">Wholesale</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-eyebrow">Iyke Nova Global Ventures</div>
+
+  <h1 class="hero-title">
+    Crafted for <em>Quality,</em><br>
+    Trusted Across<br>
+    Nigeria
+  </h1>
+
+  <p class="hero-subtitle">
+    From our certified production lines to supermarket shelves nationwide —
+    we manufacture snacks and biscuits that bring smiles with every bite.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#products" class="btn-primary">Explore Products</a>
+    <a href="#distributor" class="btn-outline">Become a Distributor</a>
+  </div>
+
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stat-item">
+    <div class="stat-num" data-target="35">0</div>
+    <div class="stat-label">Distributors in Nigeria</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-target="45">0</div>
+    <div class="stat-label">Active Outlets</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-target="250">0</div>
+    <div class="stat-label">Partner Supermarkets</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">✓</div>
+    <div class="stat-label">NAFDAC Certified</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-img-frame">
+        <div class="about-pattern"></div>
+        <div class="about-img-inner">IN</div>
+        <div class="about-badge">
+          <div class="about-badge-num">35+</div>
+          <div class="about-badge-text">Years of Craft</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="section-eyebrow reveal">Our Story</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Known for <em>Tasty</em><br>Biscuits, Loved<br>by Millions
+      </h2>
+      <p class="about-body reveal reveal-delay-2">
+        At Iyke Nova Global Ventures, we strive to create and provide edible, quality products that put a smile on your face. Every biscuit, cracker, and wafer is crafted with the finest ingredients under strict hygiene and safety standards.
+      </p>
+      <p class="about-body reveal reveal-delay-3" style="margin-top:-1rem;">
+        With a reach that spans over 250 supermarkets and a growing network of 35+ dedicated distributors, Iyke Nova is Nigeria's trusted name in the snack aisle.
+      </p>
+      <div class="about-pillars reveal reveal-delay-3">
+        <div class="pillar">
+          <div class="pillar-title">Certified Quality</div>
+          <div class="pillar-text">NAFDAC approved. Every product meets national food safety standards.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Wide Reach</div>
+          <div class="pillar-text">Present in every major state across Nigeria through our distribution network.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Top Ingredients</div>
+          <div class="pillar-text">We use premium ingredients in fully automated, hygienic production.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Trusted Brand</div>
+          <div class="pillar-text">Decades of building a brand Nigerians depend on and enjoy daily.</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-4">
+        <a href="#contact" class="btn-primary" style="margin-top:1rem; display:inline-block;">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="products-header">
+    <div>
+      <div class="section-eyebrow reveal">Our Range</div>
+      <h2 class="section-title reveal reveal-delay-1">Product <em>Categories</em></h2>
+    </div>
+    <a href="https://iykenova.com/shop/" class="btn-primary reveal" style="white-space:nowrap;">View All Products</a>
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-thumb">
+        <div class="product-thumb-pattern"></div>
+        <div class="product-thumb-icon">🍪</div>
+        <div class="product-thumb-tag">Premium</div>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Cookies</div>
+        <div class="product-count">2 Products in this range</div>
+        <a href="https://iykenova.com/product-category/cookies/" class="product-link">Browse Cookies</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-1">
+      <div class="product-thumb">
+        <div class="product-thumb-pattern"></div>
+        <div class="product-thumb-icon">🥨</div>
+        <div class="product-thumb-tag">Bestseller</div>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Crackers</div>
+        <div class="product-count">19 Products in this range</div>
+        <a href="https://iykenova.com/product-category/crackers/" class="product-link">Browse Crackers</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-thumb">
+        <div class="product-thumb-pattern"></div>
+        <div class="product-thumb-icon">🥜</div>
+        <div class="product-thumb-tag">Nutritious</div>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Nuts</div>
+        <div class="product-count">2 Products in this range</div>
+        <a href="https://iykenova.com/product-category/nuts/" class="product-link">Browse Nuts</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-1">
+      <div class="product-thumb">
+        <div class="product-thumb-pattern"></div>
+        <div class="product-thumb-icon">🫙</div>
+        <div class="product-thumb-tag">Natural</div>
+      </div>
+      <div class="product-body">
+        <div class="product-name">PaPa Hut</div>
+        <div class="product-count">5 Products in this range</div>
+        <a href="https://iykenova.com/product-category/papa-hut/" class="product-link">Browse PaPa Hut</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-thumb">
+        <div class="product-thumb-pattern"></div>
+        <div class="product-thumb-icon">🎂</div>
+        <div class="product-thumb-tag">Classic</div>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Short Cake</div>
+        <div class="product-count">1 Product in this range</div>
+        <a href="https://iykenova.com/product-category/short-cake/" class="product-link">Browse Short Cake</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-3">
+      <div class="product-thumb">
+        <div class="product-thumb-pattern"></div>
+        <div class="product-thumb-icon">🍬</div>
+        <div class="product-thumb-tag">Light &amp; Crispy</div>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Wafers</div>
+        <div class="product-count">7 Products in this range</div>
+        <a href="https://iykenova.com/product-category/wafers/" class="product-link">Browse Wafers</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section id="quality">
+  <div class="hero-grid-bg"></div>
+  <div class="section-eyebrow reveal" style="position:relative">Standards &amp; Certifications</div>
+  <h2 class="section-title reveal reveal-delay-1" style="position:relative">Uncompromising<br><em>Quality</em> At Every Step</h2>
+
+  <div class="quality-grid" style="position:relative">
+    <div class="quality-card reveal">
+      <div class="quality-num">01</div>
+      <div class="quality-icon-wrap">🏭</div>
+      <div class="quality-title">Fully Automated Production</div>
+      <div class="quality-text">Our manufacturing facilities run on modern, fully automated lines — minimising human handling and maximising consistency in every batch.</div>
+    </div>
+    <div class="quality-card reveal reveal-delay-1">
+      <div class="quality-num">02</div>
+      <div class="quality-icon-wrap">🛡️</div>
+      <div class="quality-title">NAFDAC Certified</div>
+      <div class="quality-text">All Iyke Nova products are certified by NAFDAC and reviewed by relevant Nigerian food authority bodies, guaranteeing safety and compliance.</div>
+    </div>
+    <div class="quality-card reveal reveal-delay-2">
+      <div class="quality-num">03</div>
+      <div class="quality-icon-wrap">📈</div>
+      <div class="quality-title">Quality Improvement Programs</div>
+      <div class="quality-text">We run ongoing Quality Improvement Programs (QIPs) with constant product assessments to maintain and exceed industry benchmarks.</div>
+    </div>
+  </div>
+
+  <div class="quality-certs reveal" style="position:relative">
+    <span class="quality-certs-label">Certified by:</span>
+    <span class="cert-badge">NAFDAC</span>
+    <span class="cert-badge">SON — Standards Organisation</span>
+    <span class="cert-badge">Food Safety Compliant</span>
+  </div>
+</section>
+
+<!-- DISTRIBUTOR / WHOLESALE -->
+<section id="distributor" style="padding:0;">
+  <div class="dist-panel">
+    <div class="section-eyebrow reveal">For Retailers</div>
+    <h2 class="section-title reveal reveal-delay-1">Purchase<br>on <em>Wholesale</em></h2>
+    <p class="dist-body reveal reveal-delay-2">
+      Stock your shelves with Nigeria's favourite biscuits and snacks. Our wholesale programme gives retailers access to our full product range at competitive pricing with reliable delivery schedules.
+    </p>
+    <a href="https://iykenova.com/distributor-wholesale-application/" class="btn-primary reveal reveal-delay-3">Apply for Wholesale</a>
+  </div>
+  <div class="dist-panel">
+    <div class="section-eyebrow reveal">For Entrepreneurs</div>
+    <h2 class="section-title reveal reveal-delay-1">Become <em>Our</em><br>Distributor</h2>
+    <p class="dist-body reveal reveal-delay-2">
+      Join our network of 35+ distributors across Nigeria. As an Iyke Nova distributor, you get exclusive territory rights, marketing support, and direct access to our growing product portfolio.
+    </p>
+    <a href="https://iykenova.com/distributor-wholesale-application/" class="btn-outline reveal reveal-delay-3" style="border-color:rgba(255,248,240,0.4); color:var(--cream);">Apply as Distributor</a>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div id="contact">
+  <div class="contact-label reveal">Let's <span>Talk</span> Business</div>
+  <div class="contact-items reveal reveal-delay-1">
+    <div class="contact-item">
+      <span class="contact-item-label">Email</span>
+      <a href="mailto:info@iykenova.com">info@iykenova.com</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">Phone</span>
+      <a href="tel:+2348035051095">+234 803 505 1095</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">Alternative</span>
+      <a href="tel:+2348176738181">+234 817 673 8181</a>
+    </div>
+    <a href="https://iykenova.com/contact-us/" class="btn-primary reveal reveal-delay-2">Full Contact Page</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">Iyke <span>Nova</span></a>
+      <p class="footer-tagline">
+        Iyke Nova Global Ventures Ltd — crafting quality biscuits, snacks and wafers for Nigerian households since our founding.
+      </p>
+    </div>
+    <div class="footer-nav">
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="https://iykenova.com/about-us/">About Us</a></li>
+          <li><a href="https://iykenova.com/shop/">Our Products</a></li>
+          <li><a href="https://iykenova.com/contact-us/">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Trade</div>
+        <ul class="footer-links">
+          <li><a href="https://iykenova.com/distributor-wholesale-application/">Wholesale</a></li>
+          <li><a href="https://iykenova.com/distributor-wholesale-application/">Become a Distributor</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Products</div>
+        <ul class="footer-links">
+          <li><a href="https://iykenova.com/product-category/crackers/">Crackers</a></li>
+          <li><a href="https://iykenova.com/product-category/cookies/">Cookies</a></li>
+          <li><a href="https://iykenova.com/product-category/wafers/">Wafers</a></li>
+          <li><a href="https://iykenova.com/product-category/papa-hut/">PaPa Hut</a></li>
+          <li><a href="https://iykenova.com/product-category/nuts/">Nuts</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Copyright 2026 © Iyke Nova Global Ventures Ltd. All rights reserved.</span>
+    <span>Made with care in Nigeria 🇳🇬</span>
+  </div>
+</footer>
+
+<script>
+  // Nav shrink on scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Counter animation
+  const counters = document.querySelectorAll('[data-target]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = +el.dataset.target;
+        const duration = 1200;
+        const step = target / (duration / 16);
+        let current = 0;
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = Math.round(current) + '+';
+          if (current >= target) clearInterval(timer);
+        }, 16);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+</script>
+</body>
+</html>
